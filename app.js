@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+//var orm = require ('orm');
 
 var routes = require('./routes/index');
 var til = require('./routes/til');
@@ -22,7 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// var db-connection-string = "";
+// var dbstring = "postgress://cs2610:asdfasdf@localhost/til";
+// var string = "process.env.DATABASE_URL || dbstring"
 // app.use(orm.express(string, {
 //     define: function (db, models, next) {
 //         next();

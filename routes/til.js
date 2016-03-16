@@ -8,7 +8,16 @@ var entries = [
 
 /*READ all: GET entries listing. */
 router.get('/', function(req, res, next){
-  res.render('til/index', {title: 'Today I Learned', entries:entries});
+  // req.db.driver.exeQuery(
+  //   "SELECT * FROM til;",
+  //   function(err, data){
+  //     if(err){
+  //        console.log(err);
+  //     }
+  //     res.render('til/index', {title: 'Today I Learned', entries:entries});
+  //   }
+  // );
+  res.render('til/index', {title: 'Today I Learned', entries:entries});//remove this line when database is running
 });
 
 /* CREATE entry form: GET /til/new */
@@ -18,8 +27,17 @@ router.get('/new', function(req, res, next){
 
 /* CREATE entry: POST /til/ */
 router.post('/', function(req, res, next){
+  // req.db.driver.execQuery(
+  //   "INSERT INTO entries (title,body) VALUES ('" request.body.title +  "','" + request.body.body"');"
+  //   function(err, data){
+  //     if(err){
+  //       console.log(err);
+  //     }
+  //     res.render('til/index', {title: 'Today I Learned', entries: entries});
+  //   }
+  // );
   entries.push(req.body);
-  res.render('til/index', {title: 'Today I Learned', entries: entries});
+  res.render('til/index', {title: 'Today I Learned', entries: entries});//remove this line after database is running
 })
 
 /*UPDATE entry from: GET /til/edit */
@@ -27,7 +45,7 @@ router.get('/:id/edit', function(req, res, next){
   res.render('til/update',
   {
     title: 'Update an entry',
-    id: req,params.id;
+    id: req.params.id,
     entry: entries[req.params.id]
   });
 });
