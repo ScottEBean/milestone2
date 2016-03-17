@@ -50,13 +50,13 @@ router.get('/:id/edit', function(req, res, next){
   });
 });
 
-/* UODATE entry: POST /til/: */
+/* UPDATE entry: POST /til/: */
 router.post('/:id', function(req, res, next){
   entries[req.params.id] = req.body;
   res.render('til/index',
   {
     title: 'Update an entry',
-    til: entries
+    entries: entries
   });
 });
 
@@ -64,13 +64,40 @@ router.post('/:id', function(req, res, next){
 router.get('/:id/delete', function(req, res, next){
   var id= req.params.id;
   entries = entries.slice(0,id).concat(entries.slice(id+1, entries.length));
-  res.render('til/index', {title: 'Today I Learned', entries: entries});
+  // req.db.driver.exeQuery(
+  //   'SELECT * FROM entries WHERE id=' + parseInt(req.params.id) + ';',
+  //   function(err, data){
+  //     if(err){
+  //       console.log(err);
+  //     }
+  //   }
+  //);
+  //
+  // req.db.driver.exeQuery(
+  //   "SELECT * FROM til;",
+  //   function(err, data){
+  //     if(err){
+  //        console.log(err);
+  //     }
+  //     res.render('til/index', {title: 'Today I Learned', entries:entries});
+  //   }``
+  // );
+  res.render('til/index', {title: 'Today I Learned', entries: entries}); //delete this line when db is running
 });
 
 /* THIS NEEDS TO BE LAST OR /new goes here rather than where it should */
 /* READ one entry: GET /til/0  */
 router.get('/:id', function(req, res, next){
-  res.render('til/entry', {title:"An entry", entry: entries[req.params.id]});
+  // req.db.driver.exeQuery(
+  //   'SELECT * FROM entries WHERE id=' + parseInt(req.params.id) + ';',
+  //   function(err, data){
+  //     if(err){
+  //       console.log(err);
+  //     }
+  //     res.render('til/entry', {title:"An entry", entry: entries[req.params.id]});
+  //   }
+  //);
+  res.render('til/entry', {title:"An entry", entry: entries[req.params.id]}); //remove when db is running
 });
 
 module.exports = router;
