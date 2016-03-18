@@ -8,16 +8,16 @@ var entries = [
 
 /*READ all: GET entries listing. */
 router.get('/', function(req, res, next){
-  // req.db.driver.exeQuery(
-  //   "SELECT * FROM til;",
-  //   function(err, data){
-  //     if(err){
-  //        console.log(err);
-  //     }
-  //     res.render('til/index', {title: 'Today I Learned', entries:entries});
-  //   }
-  // );
-  res.render('til/index', {title: 'Today I Learned', entries:entries});//remove this line when database is running
+  req.db.driver.exeQuery(
+    "SELECT * FROM til;",
+    function(err, data){
+      if(err){
+         console.log(err);
+      }
+      res.render('til/index', {title: 'Today I Learned', entries:entries});
+    }
+  );
+  //res.render('til/index', {title: 'Today I Learned', entries:entries});//remove this line when database is running
 });
 
 /* CREATE entry form: GET /til/new */
