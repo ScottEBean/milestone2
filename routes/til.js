@@ -5,8 +5,8 @@ var entries = [];
 
 /*READ all: GET entries listing. */
 router.get('/', function(req, res, next){
-  console.log(req.cookies.username);
-  var name = req.cookie.username || 'anonymous';
+//  console.log(req.cookies.username);
+  //var name = req.cookie.username || 'anonymous';
   req.db.driver.exeQuery(
     "SELECT * FROM til;",
     function(err, data){
