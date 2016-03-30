@@ -26,7 +26,8 @@ router.get('/new', function(req, res, next){
 /* CREATE entry: POST /til/ */
 router.post('/', function(req, res, next){
   req.db.driver.execQuery(
-    "INSERT INTO entries (title,body) VALUES ('" request.body.title +  "','" + request.body.body"');"
+    "INSERT INTO entries (title, body) VALUES (?,?);",
+    [req.body.title, req.body.body],
     function(err, data){
       if(err){
         console.log(err);
@@ -34,7 +35,7 @@ router.post('/', function(req, res, next){
       res.redirect(303, '/til/');
     }
   );
-})
+});
 
 /*UPDATE entry from: GET /til/edit */
 router.get('/:id/edit', function(req, res, next){
@@ -96,7 +97,6 @@ router.get('/:id', function(req, res, next){
       res.render('til/entry', {title: "a entry", entry: data[0]});
     }
   )
-  };
 });
 
 module.exports = router;
