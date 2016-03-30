@@ -6,8 +6,8 @@ var crypto = require('crypto');
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Today I Learned' });
 });
-/*
-// GET login
+
+//GET login
 router.get('login', function(req, res, next){
   res.render('login', {title: 'Login - Today I Learned'});
 });
@@ -40,5 +40,5 @@ router.get('/logout', function(req, res){
   res.clearCookie('username');
   res.redirect("/");
 });
-*/
+
 module.exports = router;
