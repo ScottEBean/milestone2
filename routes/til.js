@@ -88,13 +88,14 @@ router.get('/:id/delete', function(req, res, next){
 router.get('/:id', function(req, res, next){
   console.log("GET entry id");
   req.db.driver.execQuery(
-    'SELECT * FROM til WHERE id=?;',
+    'SELECT * FROM entries WHERE id=?;',
     [parseInt(req.params.id)],
     function(err, data){
       if(err){
         console.log(err);
       }
       res.render('til/entry', {title: "a entry", entry: data[0]});
+
     }
   )
 });
